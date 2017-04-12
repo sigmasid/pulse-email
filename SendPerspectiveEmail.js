@@ -3,8 +3,9 @@ var helper = require('sendgrid').mail;
 var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 var fbutil = require('./fbutil');
 
-function EmailSender(email, inviteID, inviteTitle, cID, cTitle, tagID, tagTitle, fromID, fromName, toName, questions, sent) {
+function EmailSender(email, inviteID, inviteTitle, cID, cTitle, tagID, tagTitle, fromID, fromName, toName, sent) {
   this.email = email;
+  
   this.inviteID = inviteID;
   this.inviteTitle = inviteTitle;
 
@@ -18,9 +19,6 @@ function EmailSender(email, inviteID, inviteTitle, cID, cTitle, tagID, tagTitle,
   this.fromName = fromName;
   this.toName = toName;
 
-  this.questions = questions;
-
-  this.sent = sent;
   this._sendEmail();
 }
 
@@ -32,7 +30,7 @@ EmailSender.prototype = {
   _sendEmail: function() {
     console.log("email is " + this.email);
     var to_email = new helper.Email(this.email);
-    var subject = "Interview Request for " + this._toTitleCase(this.tagTitle) + " series";
+    var subject = "Can you share your perspective on " + this.inviteTitle + "?";
 
     var personalization = new helper.Personalization()
     substitution = new helper.Substitution("%fromName%", this.fromName);
@@ -56,35 +54,11 @@ EmailSender.prototype = {
     personalization.addSubstitution(substitution);
 
     personalization.addTo(to_email);
-    custom_arg = new helper.CustomArgs("type", "interview_invite");
+    custom_arg = new helper.CustomArgs("type", "perspectives_invite");
     personalization.addCustomArg(custom_arg);
 
-    if (this.questions.length > 0) {
-      substitution = new helper.Substitution("%question1%", this.questions[0]);
-      personalization.addSubstitution(substitution);
-    } else {
-      substitution = new helper.Substitution("%question1%", "");
-      personalization.addSubstitution(substitution);
-    }
-
-    if (this.questions.length > 1) {
-      substitution = new helper.Substitution("%question2%", this.questions[1]);
-      personalization.addSubstitution(substitution);
-    } else {
-      substitution = new helper.Substitution("%question2%", "");
-      personalization.addSubstitution(substitution);
-    }
-
-    if (this.questions.length > 2) {
-      substitution = new helper.Substitution("%question3%", this.questions[2]);
-      personalization.addSubstitution(substitution);
-    } else {
-      substitution = new helper.Substitution("%question3%", "");
-      personalization.addSubstitution(substitution);
-    }
-
-    let inviteLink = "https://tc237.app.goo.gl/?link=http://checkpulse.co/interviewRequests/" + this.inviteID + "&ibi=co.checkpulse.pulse&isi=1200702658";
-    substitution = new helper.Substitution("%inviteLink%", inviteLink);
+    let inviteLink = "https://tc237.app.goo.gl/?link=http://checkpulse.co/invite/" + this.inviteID + "&ibi=co.checkpulse.pulse&isi=1200702658";
+    substitution = new helper.Substitution("%invite_link%", inviteLink);
     personalization.addSubstitution(substitution);
 
     let pulseLink = "https://tc237.app.goo.gl/?link=http://checkpulse.co/&ibi=co.checkpulse.pulse&isi=1200702658";
@@ -97,7 +71,7 @@ EmailSender.prototype = {
 
     var mail = new helper.Mail();
     mail.addPersonalization(personalization);    
-    mail.setTemplateId("d1468f22-1653-4a08-828a-b72767493de0");
+    mail.setTemplateId("41b6268c-495a-47a8-b67c-a3027ebb6786");
     mail.setSubject(subject);
     
     email = new helper.Email("hi@checkpulse.co", "Pulse")
@@ -123,6 +97,6 @@ EmailSender.prototype = {
   },
 };
 
-exports.process = function(email, inviteID, inviteTitle, cID, cTitle, tagID, tagTitle, fromID, fromName, toName, questions, sent) {
-  new EmailSender(email, inviteID, inviteTitle, cID, cTitle, tagID, tagTitle, fromID, fromName, toName, questions, sent);
+exports.process = function(email, inviteID, inviteTitle, cID, cTitle, tagID, tagTitle, fromID, fromName, toName, sent) {
+  new EmailSender(email, inviteID, inviteTitle, cID, cTitle, tagID, tagTitle, fromID, fromName, toName, sent);
 };

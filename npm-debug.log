@@ -7,8 +7,8 @@
 6 silly lifecycle appengine-sendgrid@0.0.1~prestart: no script for prestart, continuing
 7 info lifecycle appengine-sendgrid@0.0.1~start: appengine-sendgrid@0.0.1
 8 verbose lifecycle appengine-sendgrid@0.0.1~start: unsafe-perm in lifecycle true
-9 verbose lifecycle appengine-sendgrid@0.0.1~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/sidtiwari/Developer/pulse-email/node_modules/.bin:/Users/sidtiwari/google-cloud-sdk/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
-10 verbose lifecycle appengine-sendgrid@0.0.1~start: CWD: /Users/sidtiwari/Developer/pulse-email
+9 verbose lifecycle appengine-sendgrid@0.0.1~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/sidtiwari/Developer/pulse-invites/node_modules/.bin:/Users/sidtiwari/google-cloud-sdk/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+10 verbose lifecycle appengine-sendgrid@0.0.1~start: CWD: /Users/sidtiwari/Developer/pulse-invites
 11 silly lifecycle appengine-sendgrid@0.0.1~start: Args: [ '-c', 'node app.js' ]
 12 silly lifecycle appengine-sendgrid@0.0.1~start: Returned: code: 1  signal: null
 13 info lifecycle appengine-sendgrid@0.0.1~start: Failed to exec start script
@@ -23,7 +23,7 @@
 14 verbose stack     at maybeClose (internal/child_process.js:877:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid appengine-sendgrid@0.0.1
-16 verbose cwd /Users/sidtiwari/Developer/pulse-email
+16 verbose cwd /Users/sidtiwari/Developer/pulse-invites
 17 error Darwin 16.0.0
 18 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "start"
 19 error node v6.7.0

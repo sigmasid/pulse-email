@@ -17,7 +17,7 @@ function EmailSender(existing, emailTo, name, channel_name, channel_id, invite_i
 EmailSender.prototype = {
   _sendEmail: function() {
     var to_email = new helper.Email(this.emailTo);
-    var subject = this.existing ? "You were recommended as an expert in " + this.channel_name : "Invitation to join Pulse as an expert in " + this.channel_name;
+    var subject = this.existing ? "Invitation to become a contributor in " + this.channel_name : "Invitation to join Pulse as a contributor in " + this.channel_name;
 
     var personalization = new helper.Personalization()
     substitution = new helper.Substitution("%name%", this.name);
@@ -29,7 +29,7 @@ EmailSender.prototype = {
     substitution = new helper.Substitution("%invite_id%", this.invite_id);
     personalization.addSubstitution(substitution);
     personalization.addTo(to_email);
-    custom_arg = new helper.CustomArgs("type", "expert_invites");
+    custom_arg = new helper.CustomArgs("type", "contributor_invite");
     personalization.addCustomArg(custom_arg);
 
     let channelLink = "https://tc237.app.goo.gl/?link=http://checkpulse.co/c/" + this.channel_id + "&ibi=co.checkpulse.pulse&isi=1200702658";
@@ -43,7 +43,7 @@ EmailSender.prototype = {
     mail.setTemplateId(templateID);
     mail.setSubject(subject);
     
-    email = new helper.Email("hi@checkpulse.co", "Pulse Q&A")
+    email = new helper.Email("hi@checkpulse.co", "Pulse")
     mail.setFrom(email);
     mail.setReplyTo(email);
 

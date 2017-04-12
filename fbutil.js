@@ -15,8 +15,20 @@ exports.authRef = function() {
   return admin.auth();
 };
 
+exports.fbMessagingRef = function() {
+  return admin.messaging();
+}
+
 exports.fbRef = function(path) {
    return admin.database().ref().child(path);
+};
+
+exports.fbAdminRef = function() {
+  return admin.database().ref();
+};
+
+exports.fbTimestamp = function() {
+  return admin.database;
 };
 
 exports.pathName = function(ref) {
